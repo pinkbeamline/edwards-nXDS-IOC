@@ -1,0 +1,197 @@
+record (stringin, "$(BL):$(DEV):ID")
+{
+    field (DTYP, "stream")
+    field (INP,  "@nxds.proto getID $(PORT)")
+    field (SCAN, "Passive")
+}
+
+record (ai, "$(BL):$(DEV):Speed")
+{
+    field (DTYP, "stream")
+    field (INP,  "@nxds.proto getSpeed $(PORT)")
+    field (SCAN, "2 second")
+    field (PREC, "0")
+    field (EGU, "RPM")
+}
+
+record (calc, "$(BL):$(DEV):Speedpc")
+{
+    field (INPA, "$(BL):$(DEV):Speed CPP")
+    field (CALC, "(A/30)*100")
+    field (PREC, "1")
+    field (EGU, "%")
+}
+
+record (ai, "$(BL):$(DEV):RunningHours")
+{
+    field (DTYP, "stream")
+    field (INP,  "@nxds.proto getHours $(PORT)")
+    field (SCAN, "10 second")
+    field (PREC, "0")
+    field (EGU, "h")
+}
+
+record (ai, "$(BL):$(DEV):StandbySpeed_RBV")
+{
+    field (DTYP, "stream")
+    field (INP,  "@nxds.proto getStdbSpeed $(PORT)")
+    field (SCAN, "5 second")
+    field (PREC, "0")
+    field (EGU, "%")
+}
+
+record (ai, "$(BL):$(DEV):PumpTemperature")
+{
+    field (DTYP, "stream")
+    field (INP,  "@nxds.proto getPumpT $(PORT)")
+    field (SCAN, "5 second")
+    field (PREC, "0")
+    field (EGU, "C")
+}
+
+record (ai, "$(BL):$(DEV):ControllerTemperature")
+{
+    field (DTYP, "stream")
+    field (INP,  "@nxds.proto getCtrlT $(PORT)")
+    field (SCAN, "5 second")
+    field (PREC, "0")
+    field (EGU, "C")
+}
+
+record (ai, "$(BL):$(DEV):MotorVoltage")
+{
+    field (DTYP, "stream")
+    field (INP,  "@nxds.proto getMVolt $(PORT)")
+    field (SCAN, "10 second")
+}
+
+record (calc, "$(BL):$(DEV):MotorVoltage_RBV")
+{
+    field (INPA, "$(BL):$(DEV):MotorVoltage CPP")
+    field (CALC, "A/10")
+    field (PREC, "1")
+    field (EGU, "V")
+}
+
+record (ai, "$(BL):$(DEV):MotorCurrent")
+{
+    field (DTYP, "stream")
+    field (INP,  "@nxds.proto getMCurr $(PORT)")
+    field (SCAN, "2 second")
+}
+
+record (calc, "$(BL):$(DEV):MotorCurrent_RBV")
+{
+    field (INPA, "$(BL):$(DEV):MotorCurrent CPP")
+    field (CALC, "A/10")
+    field (PREC, "1")
+    field (EGU, "A")
+}
+
+record (calc, "$(BL):$(DEV):Power_RBV")
+{
+    field (INPA, "$(BL):$(DEV):MotorCurrent CPP")
+    field (CALC, "(A>0)?1:0")
+    field (PREC, "0")
+}
+
+record (ai, "$(BL):$(DEV):MotorPower")
+{
+    field (DTYP, "stream")
+    field (INP,  "@nxds.proto getMPower $(PORT)")
+    field (SCAN, "2 second")
+}
+
+record (calc, "$(BL):$(DEV):MotorPower_RBV")
+{
+    field (INPA, "$(BL):$(DEV):MotorPower CPP")
+    field (CALC, "A/10")
+    field (PREC, "1")
+    field (EGU, "W")
+}
+
+record (ai, "$(BL):$(DEV):SealTotalHours")
+{
+    field (DTYP, "stream")
+    field (INP,  "@nxds.proto getSealH $(PORT)")
+    field (SCAN, "10 second")
+    field (PREC, "0")
+    field (EGU, "h")
+}
+
+record (ai, "$(BL):$(DEV):SealRemainingHours")
+{
+    field (DTYP, "stream")
+    field (INP,  "@nxds.proto getSealRH $(PORT)")
+    field (SCAN, "10 second")
+    field (PREC, "0")
+    field (EGU, "h")
+}
+
+record (ai, "$(BL):$(DEV):BearingTotalHours")
+{
+    field (DTYP, "stream")
+    field (INP,  "@nxds.proto getBearH $(PORT)")
+    field (SCAN, "10 second")
+    field (PREC, "0")
+    field (EGU, "h")
+}
+
+record (ai, "$(BL):$(DEV):BearingRemainingHours")
+{
+    field (DTYP, "stream")
+    field (INP,  "@nxds.proto getBearRH $(PORT)")
+    field (SCAN, "10 second")
+    field (PREC, "0")
+    field (EGU, "h")
+}
+
+record (ao, "$(BL):$(DEV):SetPowerON")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@nxds.proto setPON $(PORT)")
+    field (SCAN, "Passive")
+}
+
+record (ao, "$(BL):$(DEV):SetPowerOFF")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@nxds.proto setPOFF $(PORT)")
+    field (SCAN, "Passive")
+}
+
+record (ao, "$(BL):$(DEV):SetSpeedFull")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@nxds.proto setSpeedFull $(PORT)")
+    field (SCAN, "Passive")
+}
+
+record (ao, "$(BL):$(DEV):SetSpeedStandby")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@nxds.proto setSpeedStdb $(PORT)")
+    field (SCAN, "Passive")
+}
+
+record (ao, "$(BL):$(DEV):SetStandbySpeed")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@nxds.proto setStdbSpd $(PORT)")
+    field (PREC, "0")
+    field (EGU, "%")
+}
+
+record (ao, "$(BL):$(DEV):SetSealReset")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@nxds.proto setSealReset $(PORT)")
+    field (SCAN, "Passive")
+}
+
+record (ao, "$(BL):$(DEV):SetBearingReset")
+{
+    field (DTYP, "stream")
+    field (OUT,  "@nxds.proto setBearReset $(PORT)")
+    field (SCAN, "Passive")
+}

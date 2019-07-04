@@ -1,0 +1,22 @@
+Terminator = CR;
+
+getID         {   out "?S0";   in "%*s %s";  }
+getSpeed      {   out "?V802"; in "%*s %f;%*s"; }
+getHours      {   out "?V810"; in "%*s %f"; }
+getStdbSpeed  {   out "?S805"; in "%*s %f"; }
+getPumpT      {   out "?V808"; in "%*s %f;%*s"; }
+getCtrlT      {   out "?V808"; in "%*s %*f;%f"; }
+getMVolt      {   out "?V809"; in "%*s %f;%*s"; }
+getMCurr      {   out "?V809"; in "%*s %*f;%f;%*s"; }
+getMPower     {   out "?V809"; in "%*s %*f;%*f;%f"; }
+getSealH      {   out "?V814"; in "%*s %f;%*f"; }
+getSealRH     {   out "?V814"; in "%*s %*f;%f"; }
+getBearH      {   out "?V815"; in "%*s %f;%*f"; }
+getBearRH     {   out "?V815"; in "%*s %*f;%f"; }
+setPON        {   out "!C802 1";  in "%*s %f";  }
+setPOFF       {   out "!C802 0";  in "%*s %f";  }
+setSpeedFull  {   out "!C803 0";  in "%*s %f";  }
+setSpeedStdb  {   out "!C803 1";  in "%*s %f";  }
+setStdbSpd    {   out "!S805 %d"; in "%*s %*s";   out "?S805";  in "%*s %f";   }
+setSealReset  {   out "!C814 1";  in "%*s %f";  }
+setBearReset  {   out "!C815 1";  in "%*s %f";  }
